@@ -1,6 +1,41 @@
 const common = require('./webpack.config.common.js');
 const createApp = common.createApp;
+const webpack = require('webpack');
+const path = require('path');
+const packageJson = require('./package.json');
+
+const viewerConfig = createApp('viewer', 'molstar');
+const mesoscaleExplorerConfig = createApp('mesoscale-explorer', 'molstar');
+
+const serviceWorkerConfig = {
+    entry: {
+        sw: './src/apps/viewer/sw.ts'  // Entry point for the service worker
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'build/viewer')
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            }
+        ]
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            VERSION: JSON.stringify(packageJson.version),
+        }),
+    ],
+    resolve: {
+        extensions: ['.ts', '.js']
+    }
+};
+
 module.exports = [
-    createApp('viewer', 'molstar'),
-    createApp('mesoscale-explorer', 'molstar'),
+    viewerConfig,
+    mesoscaleExplorerConfig,
+    serviceWorkerConfig
 ];
