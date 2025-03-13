@@ -13,20 +13,20 @@
                 "sizes": "48x48"
             },
             {
-                "src": "circle.ico",
+                "src": "icons/circle.ico",
                 "sizes": "72x72"
             },
             {
-                "src": "circle.svg",
+                "src": "icons/circle.svg",
                 "sizes": "72x72 96x96",
                 "purpose": "maskable"
             },
             {
-                "src": "wheel.svg",
+                "src": "icons/wheel.svg",
                 "sizes": "144x144"
             },
             {
-                "src": "tire.svg",
+                "src": "icons/tire.svg",
                 "sizes": "192x192"
             }
         ],
